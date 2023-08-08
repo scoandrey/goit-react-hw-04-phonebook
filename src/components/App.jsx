@@ -16,11 +16,11 @@ const App = () => {
   ]);
   const [filter, setFilter] = useState('');
 
-  const removeContact = useCallback(id => {
+  const removeContact = id => {
     setContacts(contacts.filter(cont => cont.id !== id));
-  });
+  };
 
-  const addContact = useCallback(contact => {
+  const addContact = contact => {
     if (
       contacts.find(
         item => item.name.toLowerCase() === contact.name.toLowerCase()
@@ -31,7 +31,7 @@ const App = () => {
     }
 
     setContacts([...contacts, { ...contact, id: nanoid() }]);
-  });
+  };
 
   const filterContacts = () =>
     contacts.filter(contact =>
