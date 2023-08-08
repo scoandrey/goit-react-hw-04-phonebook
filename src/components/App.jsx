@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import React from 'react';
 import { nanoid } from 'nanoid';
 import Contacts from 'components/Contacts/Contacts';
