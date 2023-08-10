@@ -4,17 +4,25 @@ const Form = ({ onSubmit }) => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-  const nameChange = e => {
-    setName(e.target.value);
-  };
-
-  const numberChange = e => {
-    setNumber(e.target.value);
+  const handleChange = evt => {
+    const { name, value } = evt.target;
+    switch (name) {
+      case 'name':
+        setName(value);
+        break;
+      case 'number':
+        setNumber(value);
+        break;
+      default:
+        console.log('Incorrect value');
+    }
   };
 
   const handleSubmit = evt => {
     evt.preventDefault();
     onSubmit({ name, number });
+    setName('');
+    setNumber('');
   };
 
   return (
@@ -24,7 +32,7 @@ const Form = ({ onSubmit }) => {
         <input
           className="input"
           value={name}
-          onChange={nameChange}
+          onChange={handleChange}
           type="text"
           name="name"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -37,7 +45,7 @@ const Form = ({ onSubmit }) => {
         <input
           className="input"
           value={number}
-          onChange={numberChange}
+          onChange={handleChange}
           type="tel"
           name="number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
